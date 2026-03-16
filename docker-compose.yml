@@ -5,6 +5,8 @@ services:
       target: web
     ports:
       - "3000:3000"
+    volumes:
+      - ./data:/app/data
     environment:
       - NODE_ENV=production
     restart: always
@@ -13,6 +15,8 @@ services:
     build:
       context: .
       target: agent
+    volumes:
+      - ./data:/app/data
     environment:
       - NODE_ENV=production
       # - OPENAI_API_KEY=${OPENAI_API_KEY}
