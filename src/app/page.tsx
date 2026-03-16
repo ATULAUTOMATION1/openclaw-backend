@@ -1,65 +1,70 @@
-import Image from "next/image";
+import React from 'react';
 
-export default function Home() {
+export default function OpenClawDashboard() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-black text-white selection:bg-red-500/30 font-sans tracking-tight">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-red-900/20 via-black to-black -z-10" />
+      
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <header className="flex items-center justify-between border-b border-white/10 pb-6 mb-12">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center font-bold text-2xl shadow-[0_0_20px_rgba(220,38,38,0.5)]">
+              ⚙
+            </div>
+            <div>
+              <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-300">
+                OpenClaw
+              </h1>
+              <p className="text-sm text-gray-400 font-medium tracking-widest uppercase">Autonomous Gateway</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+            <span className="text-green-500 font-medium text-sm">System Online</span>
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Status Panel */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md">
+            <h2 className="text-xl font-semibold mb-4 text-gray-200">Worker Status</h2>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center bg-black/40 p-4 rounded-xl">
+                <span className="text-gray-400 text-sm">Next Scheduled Run</span>
+                <span className="text-white font-mono bg-white/10 px-3 py-1 rounded-md">09:00 UTC</span>
+              </div>
+              <div className="flex justify-between items-center bg-black/40 p-4 rounded-xl">
+                <span className="text-gray-400 text-sm">Brain Model</span>
+                <span className="text-red-400 font-mono">Gemini 2.5 Flash</span>
+              </div>
+              <div className="flex justify-between items-center bg-black/40 p-4 rounded-xl pb-5">
+                 <button className="w-full bg-white/10 hover:bg-white/20 transition-colors text-white py-3 rounded-lg font-bold">
+                   ▶ Force Manual Run
+                 </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Activity Log */}
+          <div className="md:col-span-2 bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-md">
+            <h2 className="text-xl font-semibold mb-4 text-gray-200">Recent Content Generations</h2>
+            <div className="h-64 rounded-xl border border-white/10 bg-black overflow-y-auto p-4 font-mono text-sm space-y-4">
+               {/* Placeholder until we connect the DB */}
+               <div className="border-l-2 border-green-500 pl-3 py-1 opacity-80">
+                  <p className="text-green-400 text-xs mb-1">[SYSTEM]: Awaiting next Cron trigger...</p>
+                  <p className="text-gray-300">Listening to Twitter, waiting for 9:00 AM UTC cycle.</p>
+               </div>
+               <div className="border-l-2 border-blue-500 pl-3 py-1 opacity-40">
+                  <p className="text-blue-400 text-xs mb-1">[SYSTEM]: Init Worker</p>
+                  <p className="text-gray-300">Successfully connected to Gemini API.</p>
+               </div>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
